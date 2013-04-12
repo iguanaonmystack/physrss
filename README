@@ -1,0 +1,3 @@
+This is a quick script I hacked up to remind me to do my physio exercises.
+
+Requires Genshi in a virtualenv whose location you'll probably need to modify.
