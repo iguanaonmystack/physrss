@@ -43,7 +43,7 @@ template="""\
 items = []
 today = datetime.date.today()
 for i in range(28):
-    date = today - datetime.timedelta(days=1)
+    date = today - datetime.timedelta(days=i)
     items.append(dict(
         title = date.strftime("Physio %a %d %b"),
         author = "Physio Monster",
