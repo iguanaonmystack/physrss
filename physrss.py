@@ -9,8 +9,7 @@ from genshi.template import MarkupTemplate
 # TODO - move this into a file of its own and use TemplateLoader
 template="""\
 <?xml version="1.0" encoding='utf-8' ?>
-<?xml-stylesheet type="text/css" href="http://nivan.net/static/css/rss.css"?>
-<rss version="2.0" xmlns:py="http://purl.org/kid/ns#">
+<rss version="2.0" xmlns:py="http://genshi.edgewall.org/">
 <channel>
     <title py:if="value_of('title')" py:content="title" />
     <link py:if="value_of('link')" py:content="link" />
@@ -45,8 +44,15 @@ items = []
 today = datetime.date.today()
 for i in range(28):
     date = today - datetime.timedelta(days=1)
-
+    items.append(dict(
+        title = date.strftime("Physio %a %d %b"),
+        author = "Physio Monster",
+        pubDate = date,
+        guid = date.strftime("phys%y%m%d"),
+    ))
 params = dict(
+    title = "Physio Reminder",
+    link = "https://github.com/flexo/physrss",
     items = items,
 )
 tmpl = MarkupTemplate(template)
